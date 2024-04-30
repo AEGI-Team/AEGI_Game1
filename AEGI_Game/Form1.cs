@@ -1,3 +1,5 @@
+
+
 namespace AEGI_Game
 {
     public partial class FormOurGame : Form
@@ -7,7 +9,7 @@ namespace AEGI_Game
             InitializeComponent();
         }
 
-       
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -34,7 +36,7 @@ namespace AEGI_Game
                 pictureBox3.Top = -650;
             }
 
-            pictureBoxCar.BringToFront();
+            player.BringToFront();
         }
         /// <12314654
 
@@ -46,6 +48,20 @@ namespace AEGI_Game
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormOurGame_KeyDown(object sender, KeyEventArgs e)
+        {
+            int speed = 10;
+            if((e.KeyCode == Keys.Left || e.KeyCode == Keys.A) && (player.Left > 480)) //для ограничения в полосе
+            {
+                player.Left -= speed; 
+            }
+
+            else if ((e.KeyCode == Keys.Right || e.KeyCode == Keys.D) && (player.Right < 670))
+            {
+                player.Left += speed;
+            }
         }
     }
 }

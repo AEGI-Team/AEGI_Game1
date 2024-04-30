@@ -33,10 +33,10 @@
             timer = new System.Windows.Forms.Timer(components);
             pictureBox1 = new PictureBox();
             pictureBox3 = new PictureBox();
-            pictureBoxCar = new PictureBox();
+            player = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxCar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             SuspendLayout();
             // 
             // timer
@@ -63,15 +63,15 @@
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
-            // pictureBoxCar
+            // player
             // 
-            pictureBoxCar.Image = (Image)resources.GetObject("pictureBoxCar.Image");
-            pictureBoxCar.Location = new Point(548, 428);
-            pictureBoxCar.Name = "pictureBoxCar";
-            pictureBoxCar.Size = new Size(65, 128);
-            pictureBoxCar.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxCar.TabIndex = 1;
-            pictureBoxCar.TabStop = false;
+            player.Image = (Image)resources.GetObject("player.Image");
+            player.Location = new Point(559, 429);
+            player.Name = "player";
+            player.Size = new Size(45, 128);
+            player.SizeMode = PictureBoxSizeMode.StretchImage;
+            player.TabIndex = 1;
+            player.TabStop = false;
             // 
             // FormOurGame
             // 
@@ -80,17 +80,18 @@
             BackColor = Color.Silver;
             ClientSize = new Size(840, 650);
             Controls.Add(pictureBox3);
-            Controls.Add(pictureBoxCar);
+            Controls.Add(player);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormOurGame";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "OurGame";
             Load += FormOurGame_Load;
+            KeyDown += FormOurGame_KeyDown;
             KeyPress += FormOurGame_KeyPress;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxCar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)player).EndInit();
             ResumeLayout(false);
         }
 
@@ -99,6 +100,6 @@
         private System.Windows.Forms.Timer timer;
         private PictureBox pictureBox1;
         private PictureBox pictureBox3;
-        private PictureBox pictureBoxCar;
+        private PictureBox player;
     }
 }
