@@ -65,7 +65,7 @@
             // 
             // player
             // 
-            player.Image = (Image)resources.GetObject("player.Image");
+            player.Image = Properties.Resources.mycar_fotor_bg_remover_20240430212132;
             player.Location = new Point(559, 429);
             player.Name = "player";
             player.Size = new Size(45, 128);

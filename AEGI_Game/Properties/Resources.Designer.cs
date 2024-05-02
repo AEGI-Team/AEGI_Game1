@@ -63,6 +63,26 @@ namespace AEGI_Game.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mycar {
+            get {
+                object obj = ResourceManager.GetObject("mycar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mycar_fotor_bg_remover_20240430212132 {
+            get {
+                object obj = ResourceManager.GetObject("mycar-fotor-bg-remover-20240430212132", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap road__1_ {
             get {
                 object obj = ResourceManager.GetObject("road (1)", resourceCulture);
