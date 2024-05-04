@@ -8,6 +8,7 @@ namespace AEGI_Game
         private Point position;
         private bool dragging; //переменна€, чтобы знать передвигаем ли мы сейчас окно
         private bool lose = false; //проигрыш, делаем машинку неподвижной
+        private int countCoins = 0;
         public FormOurGame()
         {
             InitializeComponent();
@@ -68,11 +69,28 @@ namespace AEGI_Game
             enemy2.Top += carspeed;//враги дл€ нашей полосы
             enemy3.Top += carspeed + 2;
             enemy4.Top += carspeed + 2;
+            coin.Top += speed + 3;
+            coin1.Top += speed + 3;
 
             if (pictureBox1.Top >= 650)
             {
                 pictureBox1.Top = 0;
                 pictureBox3.Top = -650;
+            }
+
+            if (coin.Top >= 590)
+            {
+                coin.Top = -55;
+                Random rand = new Random();
+                coin.Left = rand.Next(430, 610);
+                
+            }
+            if (coin1.Top >= 630)
+            {
+                coin1.Top = -55;
+                Random rand = new Random();
+                coin1.Left = rand.Next(185, 362);
+
             }
 
             if (enemy1.Top >= 650)
@@ -113,6 +131,22 @@ namespace AEGI_Game
             }
 
             player.BringToFront();
+            if (player.Bounds.IntersectsWith(coin.Bounds))
+            {
+                countCoins++;
+                labelcoins.Text = "” вас монет:" + countCoins.ToString();
+                coin.Top = -55;
+                Random rand = new Random();
+                coin.Left = rand.Next(430, 610);
+            }
+            if (player.Bounds.IntersectsWith(coin1.Bounds))
+            {
+                countCoins++;
+                labelcoins.Text = "” вас монет:" + countCoins.ToString();
+                coin1.Top = -55;
+                Random rand = new Random();
+                coin1.Left = rand.Next(430, 610);
+            }
         }
         /// <12314654
 
@@ -146,6 +180,11 @@ namespace AEGI_Game
             buttonRestart.Visible = false;
             timer.Enabled = true;
             lose = false;
+            countCoins = 0;
+            labelcoins.Text = "” вас монет: 0" ;
+            coin.Top = -600;
         }
+
+        
     }
 }

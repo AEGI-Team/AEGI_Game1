@@ -40,6 +40,9 @@
             enemy4 = new PictureBox();
             labelLose = new Label();
             buttonRestart = new Button();
+            coin = new PictureBox();
+            labelcoins = new Label();
+            coin1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
@@ -47,6 +50,8 @@
             ((System.ComponentModel.ISupportInitialize)enemy2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)enemy3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)enemy4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)coin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)coin1).BeginInit();
             SuspendLayout();
             // 
             // timer
@@ -58,9 +63,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Location = new Point(-5, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(840, 650);
+            pictureBox1.Size = new Size(844, 652);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -155,12 +160,49 @@
             buttonRestart.UseVisualStyleBackColor = false;
             buttonRestart.Click += buttonRestart_Click_1;
             // 
+            // coin
+            // 
+            coin.BackColor = Color.DimGray;
+            coin.Image = (Image)resources.GetObject("coin.Image");
+            coin.Location = new Point(442, -550);
+            coin.Name = "coin";
+            coin.Size = new Size(34, 34);
+            coin.SizeMode = PictureBoxSizeMode.StretchImage;
+            coin.TabIndex = 11;
+            coin.TabStop = false;
+            // 
+            // labelcoins
+            // 
+            labelcoins.AutoSize = true;
+            labelcoins.BackColor = Color.IndianRed;
+            labelcoins.Font = new Font("Showcard Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelcoins.ForeColor = SystemColors.Control;
+            labelcoins.Location = new Point(663, 615);
+            labelcoins.Name = "labelcoins";
+            labelcoins.Size = new Size(176, 26);
+            labelcoins.TabIndex = 12;
+            labelcoins.Text = "У ВАС МОНЕТ: 0";
+            // 
+            // coin1
+            // 
+            coin1.BackColor = Color.DimGray;
+            coin1.Image = (Image)resources.GetObject("coin1.Image");
+            coin1.Location = new Point(198, -600);
+            coin1.Name = "coin1";
+            coin1.Size = new Size(34, 34);
+            coin1.SizeMode = PictureBoxSizeMode.StretchImage;
+            coin1.TabIndex = 14;
+            coin1.TabStop = false;
+            // 
             // FormOurGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
             ClientSize = new Size(840, 650);
+            Controls.Add(coin1);
+            Controls.Add(labelcoins);
+            Controls.Add(coin);
             Controls.Add(buttonRestart);
             Controls.Add(labelLose);
             Controls.Add(enemy4);
@@ -184,6 +226,8 @@
             ((System.ComponentModel.ISupportInitialize)enemy2).EndInit();
             ((System.ComponentModel.ISupportInitialize)enemy3).EndInit();
             ((System.ComponentModel.ISupportInitialize)enemy4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)coin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)coin1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -200,5 +244,8 @@
         private PictureBox enemy4;
         private Label labelLose;
         private Button buttonRestart;
+        private PictureBox coin;
+        private Label labelcoins;
+        private PictureBox coin1;
     }
 }
