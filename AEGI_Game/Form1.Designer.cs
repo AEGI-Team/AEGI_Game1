@@ -63,7 +63,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-5, 0);
+            pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(844, 652);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -75,7 +75,7 @@
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(0, -650);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(840, 650);
+            pictureBox3.Size = new Size(844, 652);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
@@ -105,7 +105,7 @@
             // 
             enemy2.BackColor = Color.Gray;
             enemy2.Image = (Image)resources.GetObject("enemy2.Image");
-            enemy2.Location = new Point(438, -400);
+            enemy2.Location = new Point(438, 400);
             enemy2.Name = "enemy2";
             enemy2.Size = new Size(45, 128);
             enemy2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -175,11 +175,11 @@
             // 
             labelcoins.AutoSize = true;
             labelcoins.BackColor = Color.IndianRed;
-            labelcoins.Font = new Font("Showcard Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelcoins.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelcoins.ForeColor = SystemColors.Control;
             labelcoins.Location = new Point(663, 615);
             labelcoins.Name = "labelcoins";
-            labelcoins.Size = new Size(176, 26);
+            labelcoins.Size = new Size(177, 25);
             labelcoins.TabIndex = 12;
             labelcoins.Text = "У ВАС МОНЕТ: 0";
             // 
