@@ -166,7 +166,7 @@
             coin.Image = (Image)resources.GetObject("coin.Image");
             coin.Location = new Point(442, -550);
             coin.Name = "coin";
-            coin.Size = new Size(34, 34);
+            coin.Size = new Size(20, 20);
             coin.SizeMode = PictureBoxSizeMode.StretchImage;
             coin.TabIndex = 11;
             coin.TabStop = false;
@@ -189,7 +189,7 @@
             coin1.Image = (Image)resources.GetObject("coin1.Image");
             coin1.Location = new Point(198, -600);
             coin1.Name = "coin1";
-            coin1.Size = new Size(34, 34);
+            coin1.Size = new Size(20, 20);
             coin1.SizeMode = PictureBoxSizeMode.StretchImage;
             coin1.TabIndex = 14;
             coin1.TabStop = false;
