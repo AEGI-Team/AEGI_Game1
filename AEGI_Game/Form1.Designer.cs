@@ -43,6 +43,9 @@
             coin = new PictureBox();
             labelcoins = new Label();
             coin1 = new PictureBox();
+            buttonStartplay = new Button();
+            buttonExit = new Button();
+            labelRecord = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
@@ -152,7 +155,7 @@
             buttonRestart.FlatStyle = FlatStyle.Flat;
             buttonRestart.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
             buttonRestart.ForeColor = SystemColors.Control;
-            buttonRestart.Location = new Point(294, 290);
+            buttonRestart.Location = new Point(300, 302);
             buttonRestart.Name = "buttonRestart";
             buttonRestart.Size = new Size(297, 55);
             buttonRestart.TabIndex = 10;
@@ -194,12 +197,55 @@
             coin1.TabIndex = 14;
             coin1.TabStop = false;
             // 
+            // buttonStartplay
+            // 
+            buttonStartplay.BackColor = Color.IndianRed;
+            buttonStartplay.FlatStyle = FlatStyle.Flat;
+            buttonStartplay.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            buttonStartplay.ForeColor = SystemColors.Control;
+            buttonStartplay.Location = new Point(300, 269);
+            buttonStartplay.Name = "buttonStartplay";
+            buttonStartplay.Size = new Size(297, 55);
+            buttonStartplay.TabIndex = 15;
+            buttonStartplay.Text = "Начать игру";
+            buttonStartplay.UseVisualStyleBackColor = false;
+            buttonStartplay.Click += buttonStartplay_Click;
+            // 
+            // buttonExit
+            // 
+            buttonExit.BackColor = Color.IndianRed;
+            buttonExit.FlatStyle = FlatStyle.Flat;
+            buttonExit.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            buttonExit.ForeColor = SystemColors.Control;
+            buttonExit.Location = new Point(300, 372);
+            buttonExit.Name = "buttonExit";
+            buttonExit.Size = new Size(297, 55);
+            buttonExit.TabIndex = 16;
+            buttonExit.Text = "Завершить игру";
+            buttonExit.UseVisualStyleBackColor = false;
+            buttonExit.Click += buttonExit_Click;
+            // 
+            // labelRecord
+            // 
+            labelRecord.AutoSize = true;
+            labelRecord.BackColor = Color.IndianRed;
+            labelRecord.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelRecord.ForeColor = SystemColors.Control;
+            labelRecord.Location = new Point(373, 12);
+            labelRecord.Name = "labelRecord";
+            labelRecord.Size = new Size(163, 38);
+            labelRecord.TabIndex = 17;
+            labelRecord.Text = "Рекорд: 0";
+            // 
             // FormOurGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
             ClientSize = new Size(840, 650);
+            Controls.Add(labelRecord);
+            Controls.Add(buttonExit);
+            Controls.Add(buttonStartplay);
             Controls.Add(coin1);
             Controls.Add(labelcoins);
             Controls.Add(coin);
@@ -247,5 +293,10 @@
         private PictureBox coin;
         private Label labelcoins;
         private PictureBox coin1;
+        private Button buttonTryAgain;
+        private Label labellives;
+        private Button buttonStartplay;
+        private Button buttonExit;
+        private Label labelRecord;
     }
 }

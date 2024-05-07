@@ -1,5 +1,9 @@
 
 
+using AEGI_Game.Properties;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Media;
+
 namespace AEGI_Game
 {
     public partial class FormOurGame : Form
@@ -9,6 +13,11 @@ namespace AEGI_Game
         private bool dragging; //переменная, чтобы знать передвигаем ли мы сейчас окно
         private bool lose = false; //проигрыш, делаем машинку неподвижной
         private int countCoins = 0;
+        int[] recordArray=new int[0];
+        int record = 0;
+        private SoundPlayer _soundPlayer;
+
+
         public FormOurGame()
         {
             InitializeComponent();
@@ -23,8 +32,16 @@ namespace AEGI_Game
 
             labelLose.Visible = false;
             buttonRestart.Visible = false;
+            buttonStartplay.Visible = true;
+            buttonExit.Visible = false;
+            labelRecord.Visible = false;
+            timer.Enabled = false;
+            _soundPlayer = new SoundPlayer("music.wav");
+           
+        
 
-            KeyPreview = true;
+
+        KeyPreview = true;
         }
 
 
@@ -83,7 +100,7 @@ namespace AEGI_Game
                 coin.Top = -55;
                 Random rand = new Random();
                 coin.Left = rand.Next(430, 610);
-                
+
             }
             if (coin1.Top >= 630)
             {
@@ -127,13 +144,20 @@ namespace AEGI_Game
                 timer.Enabled = false;
                 labelLose.Visible = true;
                 buttonRestart.Visible = true;
+                buttonExit.Visible = true;
                 lose = true;
+                record=FindMax(recordArray);
+                labelRecord.Text = "Рекорд: " + record.ToString();
+                labelRecord.Visible = true;
+                _soundPlayer.Play();
+
             }
 
             player.BringToFront();
             if (player.Bounds.IntersectsWith(coin.Bounds))
             {
                 countCoins++;
+                recordArray = AddElement(recordArray, countCoins);
                 labelcoins.Text = "У вас монет:" + countCoins.ToString();
                 coin.Top = -55;
                 Random rand = new Random();
@@ -142,6 +166,7 @@ namespace AEGI_Game
             if (player.Bounds.IntersectsWith(coin1.Bounds))
             {
                 countCoins++;
+                recordArray = AddElement(recordArray, countCoins);
                 labelcoins.Text = "У вас монет:" + countCoins.ToString();
                 coin1.Top = -55;
                 Random rand = new Random();
@@ -172,6 +197,7 @@ namespace AEGI_Game
 
         private void buttonRestart_Click_1(object sender, EventArgs e)
         {
+            _soundPlayer.Stop();
             enemy1.Top = -130;
             enemy2.Top = -400;
             enemy3.Top = -130;
@@ -180,11 +206,52 @@ namespace AEGI_Game
             buttonRestart.Visible = false;
             timer.Enabled = true;
             lose = false;
+            buttonExit.Visible = false;
+            labelRecord.Visible = false;
+
             countCoins = 0;
-            labelcoins.Text = "У вас монет: 0" ;
+            labelcoins.Text = "У вас монет: 0";
             coin.Top = -600;
         }
 
-        
+        private void buttonStartplay_Click(object sender, EventArgs e)
+        {
+            buttonStartplay.Visible = false;
+            if (buttonStartplay.Visible==false)
+            {
+                timer.Enabled = true;
+            }
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        static int[] AddElement(int[] array, int element)
+        {
+            int[] newArray = new int[array.Length + 1];
+            for (int i = 0; i < array.Length; i++)
+            {
+                newArray[i] = array[i];
+            }
+            newArray[newArray.Length - 1] = element;
+
+            return newArray;
+        }
+        static int FindMax(int[] array)
+        {
+            if (array.Length==0) return 0;
+            int max = array[0]; 
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i] > max)
+                {
+                    max = array[i];
+                }
+            }
+            
+            
+            return max;
+        }
     }
 }
