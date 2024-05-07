@@ -8,7 +8,6 @@ namespace AEGI_Game
 {
     public partial class FormOurGame : Form
     {
-
         private Point position;
         private bool dragging; //переменная, чтобы знать передвигаем ли мы сейчас окно
         private bool lose = false; //проигрыш, делаем машинку неподвижной
@@ -311,8 +310,6 @@ namespace AEGI_Game
                     max = array[i];
                 }
             }
-            
-            
             return max;
         }
     }
