@@ -130,7 +130,7 @@
             // 
             enemy4.BackColor = Color.Gray;
             enemy4.Image = (Image)resources.GetObject("enemy4.Image");
-            enemy4.Location = new Point(273, 397);
+            enemy4.Location = new Point(271, 400);
             enemy4.Name = "enemy4";
             enemy4.Size = new Size(45, 128);
             enemy4.SizeMode = PictureBoxSizeMode.StretchImage;

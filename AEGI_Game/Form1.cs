@@ -37,11 +37,7 @@ namespace AEGI_Game
             labelRecord.Visible = false;
             timer.Enabled = false;
             _soundPlayer = new SoundPlayer("music.wav");
-           
-        
-
-
-        KeyPreview = true;
+            KeyPreview = true;
         }
 
 
@@ -114,26 +110,92 @@ namespace AEGI_Game
             {
                 enemy1.Top = -130;
                 Random rand = new Random();
-                enemy1.Left = rand.Next(430, 610);
+                int newLeft = rand.Next(430, 610 - 45);
+                int newTop = rand.Next(-300, -130);
+                bool isPositionValid = false;
+                while (!isPositionValid)
+                {
+                    if ((newLeft >= enemy2.Left - 48 && newLeft <= enemy2.Left + 48) && (newTop >= enemy2.Top - 128 && newTop <= enemy2.Top + 128))
+                    {
+                        newLeft = rand.Next(430, 610 - 45);
+                        newTop = rand.Next(-300, -130);
+                    }
+                    else
+                    {
+                        isPositionValid = true;
+                    }
+                }
+                enemy1.Left = newLeft;
+                enemy1.Top = newTop;
             }
+
             if (enemy2.Top >= 650)
             {
                 enemy2.Top = -400;
                 Random rand = new Random();
-                enemy2.Left = rand.Next(430, 610);
+                int newLeft = rand.Next(430, 610 - 45);
+                int newTop = rand.Next(-600, -400);
+                bool isPositionValid = false;
+                while (!isPositionValid)
+                {
+                    if ((newLeft >= enemy1.Left - 48 && newLeft <= enemy1.Left + 48) && (newTop >= enemy1.Top - 128 && newTop <= enemy1.Top + 128))
+                    {
+                        newLeft = rand.Next(430, 610 - 45);
+                        newTop = rand.Next(-600, -400);
+                    }
+                    else
+                    {
+                        isPositionValid = true;
+                    }
+                }
+                enemy2.Left = newLeft;
+                enemy2.Top = newTop;
             }
 
             if (enemy3.Top >= 650)
             {
                 enemy3.Top = -130;
                 Random rand = new Random();
-                enemy3.Left = rand.Next(185, 362);
+                int newLeft = rand.Next(185, 362 - 45);
+                int newTop = rand.Next(-300, -130);
+                bool isPositionValid = false;
+                while (!isPositionValid)
+                {
+                    if ((newLeft >= enemy4.Left - 48 && newLeft <= enemy4.Left + 48) && (newTop >= enemy4.Top - 128 && newTop <= enemy4.Top + 128))
+                    {
+                        newLeft = rand.Next(185, 362 - 45);
+                        newTop = rand.Next(-300, -130);
+                    }
+                    else
+                    {
+                        isPositionValid = true;
+                    }
+                }
+                enemy3.Left = newLeft;
+                enemy3.Top = newTop;
             }
+
             if (enemy4.Top >= 650)
             {
                 enemy4.Top = -400;
                 Random rand = new Random();
-                enemy4.Left = rand.Next(185, 362);
+                int newLeft = rand.Next(185, 362 - 45);
+                int newTop = rand.Next(-600, -400);
+                bool isPositionValid = false;
+                while (!isPositionValid)
+                {
+                    if ((newLeft >= enemy3.Left - 48 && newLeft <= enemy3.Left + 48) && (newTop >= enemy3.Top - 128 && newTop <= enemy3.Top + 128))
+                    {
+                        newLeft = rand.Next(185, 362 - 45);
+                        newTop = rand.Next(-600, -400);
+                    }
+                    else
+                    {
+                        isPositionValid = true;
+                    }
+                }
+                enemy4.Left = newLeft;
+                enemy4.Top = newTop;
             }
 
             if (player.Bounds.IntersectsWith(enemy1.Bounds)
