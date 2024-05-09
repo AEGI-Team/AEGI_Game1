@@ -5,7 +5,9 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System.Media;
 
 namespace AEGI_Game
+  
 {
+    
     public partial class FormOurGame : Form
     {
         private Point position;
@@ -15,6 +17,8 @@ namespace AEGI_Game
         int[] recordArray=new int[0];
         int record = 0;
         private SoundPlayer _soundPlayer;
+
+        int speed = 5; //теперь глобальная для ускорения машинки
 
 
         public FormOurGame()
@@ -72,7 +76,7 @@ namespace AEGI_Game
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            int speed = 5;
+            //int speed = 5;
             pictureBox1.Top += speed;
             pictureBox3.Top += speed;
 
@@ -83,6 +87,7 @@ namespace AEGI_Game
             enemy4.Top += carspeed + 2;
             coin.Top += speed + 3;
             coin1.Top += speed + 3;
+
 
             if (pictureBox1.Top >= 650)
             {
@@ -244,16 +249,29 @@ namespace AEGI_Game
         private void FormOurGame_KeyDown(object sender, KeyEventArgs e)
         {
             if (lose) { return; }
-            int speed = 10;
+            int speed1 = 10;
             if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.A) && (player.Left > 185)) //для ограничения в полосе
             {
-                player.Left -= speed;
+                player.Left -= speed1;
             }
 
             else if ((e.KeyCode == Keys.Right || e.KeyCode == Keys.D) && (player.Right < 654))
             {
-                player.Left += speed;
+                player.Left += speed1;
             }
+
+            else if ((e.KeyCode == Keys.Up || e.KeyCode == Keys.W) && speed <= 40 )
+            {
+
+                speed += 5;
+            }
+
+            else if ((e.KeyCode == Keys.Down || e.KeyCode == Keys.S) && speed >= 5)
+            {
+
+                speed -= 5;
+            }
+
         }
 
         private void buttonRestart_Click_1(object sender, EventArgs e)
