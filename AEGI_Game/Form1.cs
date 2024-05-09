@@ -7,18 +7,20 @@ using System.Media;
 namespace AEGI_Game
   
 {
-    
+
     public partial class FormOurGame : Form
     {
         private Point position;
         private bool dragging; //переменна€, чтобы знать передвигаем ли мы сейчас окно
         private bool lose = false; //проигрыш, делаем машинку неподвижной
         private int countCoins = 0;
-        int[] recordArray=new int[0];
+        int[] recordArray = new int[0];
         int record = 0;
         private SoundPlayer _soundPlayer;
 
         int speed = 5; //теперь глобальна€ дл€ ускорени€ машинки
+        int coinSpeed = 1;
+        int playerSpeed = 5;
 
 
         public FormOurGame()
@@ -74,9 +76,9 @@ namespace AEGI_Game
             }
         }
 
+
         private void timer_Tick(object sender, EventArgs e)
         {
-            //int speed = 5;
             pictureBox1.Top += speed;
             pictureBox3.Top += speed;
 
@@ -85,8 +87,8 @@ namespace AEGI_Game
             enemy2.Top += carspeed;//враги дл€ нашей полосы
             enemy3.Top += carspeed + 2;
             enemy4.Top += carspeed + 2;
-            coin.Top += speed + 3;
-            coin1.Top += speed + 3;
+            coin.Top += coinSpeed + playerSpeed;
+            coin1.Top += coinSpeed + playerSpeed;
 
 
             if (pictureBox1.Top >= 650)
@@ -97,14 +99,14 @@ namespace AEGI_Game
 
             if (coin.Top >= 590)
             {
-                coin.Top = -55;
+                coin.Top = -500;
                 Random rand = new Random();
                 coin.Left = rand.Next(430, 610);
 
             }
             if (coin1.Top >= 630)
             {
-                coin1.Top = -55;
+                coin1.Top = -500;
                 Random rand = new Random();
                 coin1.Left = rand.Next(185, 362);
 
@@ -212,7 +214,7 @@ namespace AEGI_Game
                 buttonRestart.Visible = true;
                 buttonExit.Visible = true;
                 lose = true;
-                record=FindMax(recordArray);
+                record = FindMax(recordArray);
                 labelRecord.Text = "–екорд: " + record.ToString();
                 labelRecord.Visible = true;
                 _soundPlayer.Play();
@@ -225,7 +227,35 @@ namespace AEGI_Game
                 countCoins++;
                 recordArray = AddElement(recordArray, countCoins);
                 labelcoins.Text = "” вас монет:" + countCoins.ToString();
-                coin.Top = -55;
+                coin.Top = -500;
+                Random rand = new Random();
+                coin.Left = rand.Next(430, 610);
+            }
+            // Check if enemies intersect with coins
+            if (enemy1.Bounds.IntersectsWith(coin.Bounds))
+            {
+                coin.Top = -500;
+                Random rand = new Random();
+                coin.Left = rand.Next(430, 610);
+            }
+
+            if (enemy2.Bounds.IntersectsWith(coin.Bounds))
+            {
+                coin.Top = -500;
+                Random rand = new Random();
+                coin.Left = rand.Next(430, 610);
+            }
+
+            if (enemy3.Bounds.IntersectsWith(coin.Bounds))
+            {
+                coin.Top = -500;
+                Random rand = new Random();
+                coin.Left = rand.Next(430, 610);
+            }
+
+            if (enemy4.Bounds.IntersectsWith(coin.Bounds))
+            {
+                coin.Top = -500;
                 Random rand = new Random();
                 coin.Left = rand.Next(430, 610);
             }
@@ -234,7 +264,35 @@ namespace AEGI_Game
                 countCoins++;
                 recordArray = AddElement(recordArray, countCoins);
                 labelcoins.Text = "” вас монет:" + countCoins.ToString();
-                coin1.Top = -55;
+                coin1.Top = -500;
+                Random rand = new Random();
+                coin1.Left = rand.Next(430, 610);
+            }
+
+            if (enemy1.Bounds.IntersectsWith(coin.Bounds))
+            {
+                coin1.Top = -500;
+                Random rand = new Random();
+                coin1.Left = rand.Next(430, 610);
+            }
+
+            if (enemy2.Bounds.IntersectsWith(coin.Bounds))
+            {
+                coin1.Top = -500;
+                Random rand = new Random();
+                coin1.Left = rand.Next(430, 610);
+            }
+
+            if (enemy3.Bounds.IntersectsWith(coin.Bounds))
+            {
+                coin1.Top = -500;
+                Random rand = new Random();
+                coin1.Left = rand.Next(430, 610);
+            }
+
+            if (enemy4.Bounds.IntersectsWith(coin.Bounds))
+            {
+                coin1.Top = -500;
                 Random rand = new Random();
                 coin1.Left = rand.Next(430, 610);
             }
@@ -260,16 +318,18 @@ namespace AEGI_Game
                 player.Left += speed1;
             }
 
-            else if ((e.KeyCode == Keys.Up || e.KeyCode == Keys.W) && speed <= 40 )
+            else if ((e.KeyCode == Keys.Up || e.KeyCode == Keys.W) && speed <= 15)
             {
 
                 speed += 5;
+                playerSpeed += 5;
             }
 
             else if ((e.KeyCode == Keys.Down || e.KeyCode == Keys.S) && speed >= 5)
             {
 
                 speed -= 5;
+                playerSpeed -= 5;
             }
 
         }
@@ -291,12 +351,13 @@ namespace AEGI_Game
             countCoins = 0;
             labelcoins.Text = "” вас монет: 0";
             coin.Top = -600;
+            coin1.Top = -700;
         }
 
         private void buttonStartplay_Click(object sender, EventArgs e)
         {
             buttonStartplay.Visible = false;
-            if (buttonStartplay.Visible==false)
+            if (buttonStartplay.Visible == false)
             {
                 timer.Enabled = true;
             }
@@ -319,8 +380,8 @@ namespace AEGI_Game
         }
         static int FindMax(int[] array)
         {
-            if (array.Length==0) return 0;
-            int max = array[0]; 
+            if (array.Length == 0) return 0;
+            int max = array[0];
             for (int i = 1; i < array.Length; i++)
             {
                 if (array[i] > max)
@@ -330,5 +391,7 @@ namespace AEGI_Game
             }
             return max;
         }
+
+        
     }
 }

@@ -243,14 +243,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
             ClientSize = new Size(840, 650);
+            Controls.Add(buttonStartplay);
+            Controls.Add(labelLose);
             Controls.Add(labelRecord);
             Controls.Add(buttonExit);
-            Controls.Add(buttonStartplay);
             Controls.Add(coin1);
             Controls.Add(labelcoins);
             Controls.Add(coin);
             Controls.Add(buttonRestart);
-            Controls.Add(labelLose);
             Controls.Add(enemy4);
             Controls.Add(enemy3);
             Controls.Add(enemy2);
