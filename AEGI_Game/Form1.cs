@@ -85,8 +85,8 @@ namespace AEGI_Game
             int carspeed = 4;
             enemy1.Top += carspeed;//враги для нашей полосы
             enemy2.Top += carspeed;//враги для нашей полосы
-            enemy3.Top += carspeed + 2;
-            enemy4.Top += carspeed + 2;
+            enemy3.Top += 3 + playerSpeed;
+            enemy4.Top += 3 + playerSpeed;
             coin.Top += coinSpeed + playerSpeed;
             coin1.Top += coinSpeed + playerSpeed;
 
@@ -325,7 +325,7 @@ namespace AEGI_Game
                 playerSpeed += 5;
             }
 
-            else if ((e.KeyCode == Keys.Down || e.KeyCode == Keys.S) && speed >= 5)
+            else if ((e.KeyCode == Keys.Down || e.KeyCode == Keys.S) && speed >= 10)
             {
 
                 speed -= 5;
