@@ -19,6 +19,7 @@ namespace AEGI_Game
         private SoundPlayer _soundPlayer;
 
         int speed = 5; //теперь глобальная для ускорения машинки
+        int speedForControl;
         int coinSpeed = 1;
         int playerSpeed = 5;
 
@@ -312,11 +313,13 @@ namespace AEGI_Game
             if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.A) && (player.Left > 185)) //для ограничения в полосе
             {
                 player.Left -= speed1;
+                speedForControl = 15;
             }
 
             else if ((e.KeyCode == Keys.Right || e.KeyCode == Keys.D) && (player.Right < 654))
             {
                 player.Left += speed1;
+                speedForControl = 15;
             }
 
             else if ((e.KeyCode == Keys.Up || e.KeyCode == Keys.W) && speed <= 15)
