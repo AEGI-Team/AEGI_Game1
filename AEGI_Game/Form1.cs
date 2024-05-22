@@ -215,6 +215,7 @@ namespace AEGI_Game
                 buttonExit.Visible = true;
                 lose = true;
                 record = FindMax(recordArray);
+                record = int.Parse(File.ReadAllText("C:/Users/Acer/Desktop/result.txt"));
                 labelRecord.Text = "Рекорд: " + record.ToString();
                 labelRecord.Visible = true;
                 _soundPlayer.Play();
@@ -389,9 +390,21 @@ namespace AEGI_Game
                     max = array[i];
                 }
             }
+
+      
+            string filePath = "C:/Users/Acer/Desktop/result.txt";
+            if (File.Exists(filePath))
+            {
+                string existingRecord = File.ReadAllText(filePath);
+                if (int.TryParse(existingRecord, out int existingRecordInt))
+                {
+                    max = Math.Max(max, existingRecordInt);
+                }
+            }
+
+          
+            File.WriteAllText(filePath, max.ToString());
             return max;
         }
-
-        
     }
 }
