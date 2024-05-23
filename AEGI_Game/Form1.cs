@@ -90,12 +90,31 @@ namespace AEGI_Game
             enemy4.Top += 3 + playerSpeed;
             coin.Top += coinSpeed + playerSpeed;
             coin1.Top += coinSpeed + playerSpeed;
+            if (countCoins>0)
+            {
+                bomb.Top += coinSpeed + playerSpeed;
+                bomb1.Top+= coinSpeed + playerSpeed;
+            }
 
 
             if (pictureBox1.Top >= 650)
             {
                 pictureBox1.Top = 0;
                 pictureBox3.Top = -650;
+            }
+            if (bomb.Top >= 590)
+            {
+                bomb.Top = -500;
+                Random rand = new Random();
+                bomb.Left = rand.Next(430, 610);
+
+            }
+            if (bomb1.Top >= 630)
+            {
+                bomb1.Top = -500;
+                Random rand = new Random();
+                bomb1.Left = rand.Next(185, 362);
+
             }
 
             if (coin.Top >= 590)
@@ -232,6 +251,77 @@ namespace AEGI_Game
                 coin.Top = -500;
                 Random rand = new Random();
                 coin.Left = rand.Next(430, 610);
+            }
+            if (player.Bounds.IntersectsWith(bomb.Bounds))
+            {
+                countCoins--;
+                labelcoins.Text = "У вас монет:" + countCoins.ToString();
+                bomb.Top = -500;
+                Random rand = new Random();
+                bomb.Left = rand.Next(430, 610);
+            }
+
+            if (player.Bounds.IntersectsWith(bomb1.Bounds))
+            {
+                countCoins--;
+                labelcoins.Text = "У вас монет:" + countCoins.ToString();
+                bomb1.Top = -500;
+                Random rand = new Random();
+                bomb1.Left = rand.Next(430, 610);
+            }
+            if (enemy1.Bounds.IntersectsWith(bomb.Bounds))
+            {
+                bomb.Top = -500;
+                Random rand = new Random();
+                bomb.Left = rand.Next(430, 610);
+            }
+
+            if (enemy2.Bounds.IntersectsWith(bomb.Bounds))
+            {
+                bomb.Top = -500;
+                Random rand = new Random();
+                bomb.Left = rand.Next(430, 610);
+            }
+
+            if (enemy3.Bounds.IntersectsWith(bomb.Bounds))
+            {
+                bomb.Top = -500;
+                Random rand = new Random();
+                bomb.Left = rand.Next(430, 610);
+            }
+
+            if (enemy4.Bounds.IntersectsWith(bomb.Bounds))
+            {
+                bomb.Top = -500;
+                Random rand = new Random();
+                bomb.Left = rand.Next(430, 610);
+            }
+            if (enemy1.Bounds.IntersectsWith(bomb1.Bounds))
+            {
+                bomb1.Top = -500;
+                Random rand = new Random();
+                bomb1.Left = rand.Next(430, 610);
+            }
+
+            if (enemy2.Bounds.IntersectsWith(bomb1.Bounds))
+            {
+                bomb1.Top = -500;
+                Random rand = new Random();
+                bomb1.Left = rand.Next(430, 610);
+            }
+
+            if (enemy3.Bounds.IntersectsWith(bomb1.Bounds))
+            {
+                bomb1.Top = -500;
+                Random rand = new Random();
+                bomb1.Left = rand.Next(430, 610);
+            }
+
+            if (enemy4.Bounds.IntersectsWith(bomb1.Bounds))
+            {
+                bomb1.Top = -500;
+                Random rand = new Random();
+                bomb1.Left = rand.Next(430, 610);
             }
             // Check if enemies intersect with coins
             if (enemy1.Bounds.IntersectsWith(coin.Bounds))

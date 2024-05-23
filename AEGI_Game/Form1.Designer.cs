@@ -46,6 +46,8 @@
             buttonStartplay = new Button();
             buttonExit = new Button();
             labelRecord = new Label();
+            bomb = new PictureBox();
+            bomb1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
@@ -55,6 +57,8 @@
             ((System.ComponentModel.ISupportInitialize)enemy4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)coin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)coin1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bomb).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bomb1).BeginInit();
             SuspendLayout();
             // 
             // timer
@@ -237,12 +241,36 @@
             labelRecord.TabIndex = 17;
             labelRecord.Text = "Рекорд: 0";
             // 
+            // bomb
+            // 
+            bomb.BackColor = Color.Gray;
+            bomb.Image = (Image)resources.GetObject("bomb.Image");
+            bomb.Location = new Point(534, -600);
+            bomb.Name = "bomb";
+            bomb.Size = new Size(32, 32);
+            bomb.SizeMode = PictureBoxSizeMode.StretchImage;
+            bomb.TabIndex = 18;
+            bomb.TabStop = false;
+            // 
+            // bomb1
+            // 
+            bomb1.BackColor = Color.Gray;
+            bomb1.Image = (Image)resources.GetObject("bomb1.Image");
+            bomb1.Location = new Point(261, -600);
+            bomb1.Name = "bomb1";
+            bomb1.Size = new Size(32, 32);
+            bomb1.SizeMode = PictureBoxSizeMode.StretchImage;
+            bomb1.TabIndex = 19;
+            bomb1.TabStop = false;
+            // 
             // FormOurGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
             ClientSize = new Size(840, 650);
+            Controls.Add(bomb1);
+            Controls.Add(bomb);
             Controls.Add(buttonStartplay);
             Controls.Add(labelLose);
             Controls.Add(labelRecord);
@@ -274,6 +302,8 @@
             ((System.ComponentModel.ISupportInitialize)enemy4).EndInit();
             ((System.ComponentModel.ISupportInitialize)coin).EndInit();
             ((System.ComponentModel.ISupportInitialize)coin1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bomb).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bomb1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -298,5 +328,7 @@
         private Button buttonStartplay;
         private Button buttonExit;
         private Label labelRecord;
+        private PictureBox bomb;
+        private PictureBox bomb1;
     }
 }
