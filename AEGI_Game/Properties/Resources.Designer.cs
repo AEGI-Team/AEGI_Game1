@@ -15,10 +15,6 @@ namespace AEGI_Game.Properties {
     /// <summary>
     ///   Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
     /// </summary>
-    // Этот класс создан автоматически классом StronglyTypedResourceBuilder
-    // с помощью такого средства, как ResGen или Visual Studio.
-    // Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
-    // с параметром /str или перестройте свой проект VS.
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -28,13 +24,9 @@ namespace AEGI_Game.Properties {
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
         
-        /// <summary>
-        ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
-        /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
@@ -46,10 +38,6 @@ namespace AEGI_Game.Properties {
             }
         }
         
-        /// <summary>
-        ///   Перезаписывает свойство CurrentUICulture текущего потока для всех
-        ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
-        /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture {
             get {
@@ -60,6 +48,15 @@ namespace AEGI_Game.Properties {
             }
         }
         
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream music {
+            get {
+                return ResourceManager.GetStream("music", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
@@ -83,9 +80,9 @@ namespace AEGI_Game.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap road__1_ {
+        internal static System.Drawing.Bitmap ROAD {
             get {
-                object obj = ResourceManager.GetObject("road (1)", resourceCulture);
+                object obj = ResourceManager.GetObject("ROAD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

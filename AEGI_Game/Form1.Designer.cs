@@ -1,4 +1,5 @@
-﻿namespace AEGI_Game
+﻿
+namespace AEGI_Game
 {
     partial class FormOurGame
     {
@@ -63,8 +64,8 @@
             // 
             // timer
             // 
-            timer.Enabled = true;
-            timer.Interval = 15;
+            timer.Enabled = false; // [Тимур] отключаем таймер на старте
+            timer.Interval = 20;
             timer.Tick += timer_Tick;
             // 
             // pictureBox1
@@ -145,7 +146,7 @@
             // 
             labelLose.AutoSize = true;
             labelLose.BackColor = Color.IndianRed;
-            labelLose.Font = new Font("Times New Roman", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelLose.Font = new Font("Times New Roman", 25.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             labelLose.ForeColor = SystemColors.Control;
             labelLose.Location = new Point(244, 236);
             labelLose.Name = "labelLose";
@@ -211,7 +212,7 @@
             buttonStartplay.Name = "buttonStartplay";
             buttonStartplay.Size = new Size(297, 55);
             buttonStartplay.TabIndex = 15;
-            buttonStartplay.Text = "Начать игру";
+                buttonStartplay.Text = "Начать игру";
             buttonStartplay.UseVisualStyleBackColor = false;
             buttonStartplay.Click += buttonStartplay_Click;
             // 
@@ -221,11 +222,11 @@
             buttonExit.FlatStyle = FlatStyle.Flat;
             buttonExit.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
             buttonExit.ForeColor = SystemColors.Control;
-            buttonExit.Location = new Point(300, 372);
+            buttonExit.Location = new Point(300, 367);
             buttonExit.Name = "buttonExit";
             buttonExit.Size = new Size(297, 55);
             buttonExit.TabIndex = 16;
-            buttonExit.Text = "Завершить игру";
+            buttonExit.Text = "Выйти";
             buttonExit.UseVisualStyleBackColor = false;
             buttonExit.Click += buttonExit_Click;
             // 
@@ -233,32 +234,33 @@
             // 
             labelRecord.AutoSize = true;
             labelRecord.BackColor = Color.IndianRed;
-            labelRecord.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelRecord.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelRecord.ForeColor = SystemColors.Control;
-            labelRecord.Location = new Point(373, 12);
+            labelRecord.Location = new Point(12, 615);
             labelRecord.Name = "labelRecord";
-            labelRecord.Size = new Size(163, 38);
+            labelRecord.Size = new Size(82, 25);
             labelRecord.TabIndex = 17;
             labelRecord.Text = "Рекорд: 0";
+            labelRecord.Visible = false;
             // 
             // bomb
             // 
-            bomb.BackColor = Color.Gray;
+            bomb.BackColor = Color.DimGray;
             bomb.Image = (Image)resources.GetObject("bomb.Image");
-            bomb.Location = new Point(534, -600);
+            bomb.Location = new Point(500, -500);
             bomb.Name = "bomb";
-            bomb.Size = new Size(32, 32);
+            bomb.Size = new Size(20, 20);
             bomb.SizeMode = PictureBoxSizeMode.StretchImage;
             bomb.TabIndex = 18;
             bomb.TabStop = false;
             // 
             // bomb1
             // 
-            bomb1.BackColor = Color.Gray;
+            bomb1.BackColor = Color.DimGray;
             bomb1.Image = (Image)resources.GetObject("bomb1.Image");
-            bomb1.Location = new Point(261, -600);
+            bomb1.Location = new Point(250, -500);
             bomb1.Name = "bomb1";
-            bomb1.Size = new Size(32, 32);
+            bomb1.Size = new Size(20, 20);
             bomb1.SizeMode = PictureBoxSizeMode.StretchImage;
             bomb1.TabIndex = 19;
             bomb1.TabStop = false;
@@ -267,32 +269,29 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Silver;
-            ClientSize = new Size(840, 650);
+            ClientSize = new Size(844, 652);
             Controls.Add(bomb1);
             Controls.Add(bomb);
-            Controls.Add(buttonStartplay);
-            Controls.Add(labelLose);
             Controls.Add(labelRecord);
             Controls.Add(buttonExit);
+            Controls.Add(buttonStartplay);
             Controls.Add(coin1);
             Controls.Add(labelcoins);
             Controls.Add(coin);
             Controls.Add(buttonRestart);
+            Controls.Add(labelLose);
             Controls.Add(enemy4);
             Controls.Add(enemy3);
             Controls.Add(enemy2);
             Controls.Add(enemy1);
-            Controls.Add(pictureBox3);
             Controls.Add(player);
+            Controls.Add(pictureBox3);
             Controls.Add(pictureBox1);
-            FormBorderStyle = FormBorderStyle.None;
             Name = "FormOurGame";
-            StartPosition = FormStartPosition.CenterScreen;
             Text = "OurGame";
-            Load += FormOurGame_Load;
             KeyDown += FormOurGame_KeyDown;
             KeyPress += FormOurGame_KeyPress;
+            Load += FormOurGame_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)player).EndInit();
@@ -309,7 +308,7 @@
         }
 
         #endregion
-        private PictureBox pictureBoxWithCar;
+
         private System.Windows.Forms.Timer timer;
         private PictureBox pictureBox1;
         private PictureBox pictureBox3;
@@ -323,8 +322,6 @@
         private PictureBox coin;
         private Label labelcoins;
         private PictureBox coin1;
-        private Button buttonTryAgain;
-        private Label labellives;
         private Button buttonStartplay;
         private Button buttonExit;
         private Label labelRecord;
@@ -332,3 +329,4 @@
         private PictureBox bomb1;
     }
 }
+
