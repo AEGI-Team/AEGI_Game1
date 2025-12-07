@@ -9,10 +9,10 @@ namespace AEGI_Game
     public partial class FormOurGame : Form
     {
         private readonly User _user;
-        private readonly Random rng = new Random(); // [Тимур] единственный генератор
+        private readonly Random rng = new Random(); // [РўРёРјСѓСЂ] РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ РіРµРЅРµСЂР°С‚РѕСЂ
         private Point position;
         private bool dragging;
-        private bool lose = false;
+        private GameState _state = GameState.Menu;
         private int countCoins = 0;
         int[] recordArray = new int[0];
         int record = 0;
@@ -64,6 +64,9 @@ namespace AEGI_Game
             buttonExit.Visible = false;
             labelRecord.Visible = false;
             timer.Enabled = false;
+            labelPause.Visible = false;
+            buttonResume.Visible = false;
+            buttonPause.Visible = false;
 
             _soundPlayer = new SoundPlayer(Properties.Resources.music);
             _soundPlayer.LoadAsync();
@@ -75,8 +78,8 @@ namespace AEGI_Game
         {
             _user = user;
             labelRecord.Visible = true;
-            labelRecord.Text = $"Рекорд: {_user.BestScore}";
-            this.Text = $"OurGame — {_user.Username}";
+            labelRecord.Text = $"Р РµРєРѕСЂРґ: {_user.BestScore}";
+            this.Text = $"OurGame вЂ” {_user.Username}";
         }
 
         private static string GetRecordFilePath()
@@ -119,6 +122,8 @@ namespace AEGI_Game
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            if (_state != GameState.Playing) return;
+
             int H = pictureBox1.Height;
             pictureBox1.Top += speed;
             pictureBox3.Top += speed;
@@ -181,11 +186,8 @@ namespace AEGI_Game
                 || player.Bounds.IntersectsWith(enemy3.Bounds)
                 || player.Bounds.IntersectsWith(enemy4.Bounds))
             {
-                timer.Enabled = false;
-                labelLose.Visible = true;
-                buttonRestart.Visible = true;
-                buttonExit.Visible = true;
-                lose = true;
+                _soundPlayer.Stop();
+                SetGameState(GameState.Lost);
 
                 if (_user != null)
                 {
@@ -196,30 +198,31 @@ namespace AEGI_Game
                     }
 
                     labelRecord.Visible = true;
-                    labelRecord.Text = $"Рекорд: {_user.BestScore}";
+                    labelRecord.Text = $"Р РµРєРѕСЂРґ: {_user.BestScore}";
                 }
                 else
                 {
                     record = FindMax(recordArray);
                     labelRecord.Visible = true;
-                    labelRecord.Text = "Рекорд: " + record;
+                    labelRecord.Text = "Р РµРєРѕСЂРґ: " + record;
                 }
 
                 _soundPlayer.Play();
+                return;
             }
 
             if (player.Bounds.IntersectsWith(coin.Bounds))
             {
                 countCoins++;
                 recordArray = AddElement(recordArray, countCoins);
-                labelcoins.Text = "У вас монет:" + countCoins;
+                labelcoins.Text = "РЈ РІР°СЃ РјРѕРЅРµС‚:" + countCoins;
                 RespawnTop(coin, -500, 430, 610);
             }
             if (player.Bounds.IntersectsWith(coin1.Bounds))
             {
                 countCoins++;
                 recordArray = AddElement(recordArray, countCoins);
-                labelcoins.Text = "У вас монет:" + countCoins;
+                labelcoins.Text = "РЈ РІР°СЃ РјРѕРЅРµС‚:" + countCoins;
                 RespawnTop(coin1, -500, 185, 362);
             }
 
@@ -267,7 +270,7 @@ namespace AEGI_Game
         private void ApplyStringsInGame()
         {
             if (_user != null)
-                Text = $"{T("App_Title")} — {_user.Username}";
+                Text = $"{T("App_Title")} вЂ” {_user.Username}";
             else
                 Text = T("App_Title");
 
@@ -277,6 +280,9 @@ namespace AEGI_Game
             buttonExit.Text = T("Game_Exit");
             labelRecord.Text = T("Game_RecordFmt", _user?.BestScore ?? record);
             labelcoins.Text = T("Game_CoinsFmt", countCoins);
+            labelPause.Text = T("Game_Pause");
+            buttonResume.Text = T("Game_Resume");
+            buttonPause.Text = T("Game_PauseButton");
         }
 
         private void FormOurGame_Load(object sender, EventArgs e)
@@ -287,7 +293,7 @@ namespace AEGI_Game
 
         private void FormOurGame_KeyDown(object sender, KeyEventArgs e)
         {
-            if (lose) return;
+            if (_state != GameState.Playing) return;
             int speed1 = 10;
             if ((e.KeyCode == Keys.Left || e.KeyCode == Keys.A) && (player.Left > 185))
             {
@@ -320,22 +326,21 @@ namespace AEGI_Game
 
            private void buttonRestart_Click_1(object sender, EventArgs e)
         {
-            // Сброс состояния игры
-            lose = false;
+            // РЎР±СЂРѕСЃ СЃРѕСЃС‚РѕСЏРЅРёСЏ РёРіСЂС‹
             countCoins = 0;
-            labelcoins.Text = "У вас монет: 0";
+            labelcoins.Text = "РЈ РІР°СЃ РјРѕРЅРµС‚: 0";
 
-            // Сброс позиции игрока
+            // РЎР±СЂРѕСЃ РїРѕР·РёС†РёРё РёРіСЂРѕРєР°
             player.Left = 524;
             player.Top = 485;
 
-            // Сброс позиции врагов
+            // РЎР±СЂРѕСЃ РїРѕР·РёС†РёРё РІСЂР°РіРѕРІ
             enemy1.Top = -130;
             enemy2.Top = 400;
             enemy3.Top = 12;
             enemy4.Top = 400;
 
-            // Сброс позиции монет и бомб
+            // РЎР±СЂРѕСЃ РїРѕР·РёС†РёРё РјРѕРЅРµС‚ Рё Р±РѕРјР±
             coin.Top = -550;
             coin.Left = rng.Next(430, 610);
             coin1.Top = -600;
@@ -345,38 +350,20 @@ namespace AEGI_Game
             bomb1.Top = -500;
             bomb1.Left = rng.Next(185, 362);
 
-            // Сброс скорости
+            // РЎР±СЂРѕСЃ СЃРєРѕСЂРѕСЃС‚Рё
             speed = baseSpeed;
             playerSpeed = basePlayerSpeed;
             coinSpeed = baseCoinSpeed;
 
-            // Скрыть элементы проигрыша, показать кнопки
-            labelLose.Visible = false;
-            buttonRestart.Visible = false;
-            buttonExit.Visible = false;
-            buttonStartplay.Visible = true;
+            SetGameState(GameState.Menu);
 
-            // Остановить музыку проигрыша
+            // РћСЃС‚Р°РЅРѕРІРёС‚СЊ РјСѓР·С‹РєСѓ РїСЂРѕРёРіСЂС‹С€Р°
             _soundPlayer.Stop();
         }
 
         private void buttonStartplay_Click(object sender, EventArgs e)
         {
-            // Начало игры
-            buttonStartplay.Visible = false;
-            buttonExit.Visible = false;
-            labelLose.Visible = false;
-            buttonRestart.Visible = false;
-
-            // Сброс счетчиков и рекордов
-            countCoins = 0;
-            labelcoins.Text = "У вас монет: 0";
-
-            // Запуск таймера
-            timer.Enabled = true;
-
-            // Музыка фона
-            _soundPlayer.PlayLooping();
+            StartGameplay();
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -384,7 +371,54 @@ namespace AEGI_Game
             this.Close();
         }
 
-        // Вспомогательные методы
+        private void buttonPause_Click(object sender, EventArgs e)
+        {
+            if (_state != GameState.Playing) return;
+            _soundPlayer.Stop();
+            SetGameState(GameState.Paused);
+        }
+
+        private void buttonResume_Click(object sender, EventArgs e)
+        {
+            if (_state != GameState.Paused) return;
+            SetGameState(GameState.Playing);
+            _soundPlayer.PlayLooping();
+        }
+
+        // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РјРµС‚РѕРґС‹
+        private void SetGameState(GameState newState)
+        {
+            _state = newState;
+            timer.Enabled = newState == GameState.Playing;
+
+            var isMenu = newState == GameState.Menu;
+            var isPaused = newState == GameState.Paused;
+            var isLost = newState == GameState.Lost;
+
+            labelLose.Visible = isLost;
+            buttonRestart.Visible = isLost;
+            buttonExit.Visible = isLost;
+
+            buttonStartplay.Visible = isMenu;
+            buttonPause.Visible = newState == GameState.Playing;
+            buttonResume.Visible = isPaused;
+            labelPause.Visible = isPaused;
+        }
+
+        private void StartGameplay()
+        {
+            buttonExit.Visible = false;
+            labelLose.Visible = false;
+            buttonRestart.Visible = false;
+            buttonStartplay.Visible = false;
+
+            countCoins = 0;
+            labelcoins.Text = "РЈ РІР°СЃ РјРѕРЅРµС‚: 0";
+
+            SetGameState(GameState.Playing);
+            _soundPlayer.PlayLooping();
+        }
+
         private void RespawnTop(PictureBox obj, int top, int leftMin, int leftMax)
         {
             obj.Top = top;

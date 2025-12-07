@@ -49,6 +49,9 @@ namespace AEGI_Game
             labelRecord = new Label();
             bomb = new PictureBox();
             bomb1 = new PictureBox();
+            buttonPause = new Button();
+            labelPause = new Label();
+            buttonResume = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
@@ -265,11 +268,54 @@ namespace AEGI_Game
             bomb1.TabIndex = 19;
             bomb1.TabStop = false;
             // 
+            // buttonPause
+            // 
+            buttonPause.BackColor = Color.IndianRed;
+            buttonPause.FlatStyle = FlatStyle.Flat;
+            buttonPause.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            buttonPause.ForeColor = SystemColors.Control;
+            buttonPause.Location = new Point(723, 12);
+            buttonPause.Name = "buttonPause";
+            buttonPause.Size = new Size(109, 39);
+            buttonPause.TabIndex = 20;
+            buttonPause.Text = "Пауза";
+            buttonPause.UseVisualStyleBackColor = false;
+            buttonPause.Click += buttonPause_Click;
+            // 
+            // labelPause
+            // 
+            labelPause.AutoSize = true;
+            labelPause.BackColor = Color.IndianRed;
+            labelPause.Font = new Font("Times New Roman", 25.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelPause.ForeColor = SystemColors.Control;
+            labelPause.Location = new Point(345, 236);
+            labelPause.Name = "labelPause";
+            labelPause.Size = new Size(148, 51);
+            labelPause.TabIndex = 21;
+            labelPause.Text = "Пауза";
+            // 
+            // buttonResume
+            // 
+            buttonResume.BackColor = Color.IndianRed;
+            buttonResume.FlatStyle = FlatStyle.Flat;
+            buttonResume.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            buttonResume.ForeColor = SystemColors.Control;
+            buttonResume.Location = new Point(300, 332);
+            buttonResume.Name = "buttonResume";
+            buttonResume.Size = new Size(297, 55);
+            buttonResume.TabIndex = 22;
+            buttonResume.Text = "Продолжить";
+            buttonResume.UseVisualStyleBackColor = false;
+            buttonResume.Click += buttonResume_Click;
+            // 
             // FormOurGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(844, 652);
+            Controls.Add(buttonResume);
+            Controls.Add(labelPause);
+            Controls.Add(buttonPause);
             Controls.Add(bomb1);
             Controls.Add(bomb);
             Controls.Add(labelRecord);
@@ -327,6 +373,8 @@ namespace AEGI_Game
         private Label labelRecord;
         private PictureBox bomb;
         private PictureBox bomb1;
+        private Button buttonPause;
+        private Label labelPause;
+        private Button buttonResume;
     }
 }
-
