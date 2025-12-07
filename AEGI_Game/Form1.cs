@@ -26,6 +26,8 @@ namespace AEGI_Game
         private readonly int baseSpeed = 5;
         private readonly int basePlayerSpeed = 5;
         private readonly int baseCoinSpeed = 1;
+        private readonly int playerStartLeft = 524;
+        private readonly int playerStartTop = 420;
 
         public FormOurGame()
         {
@@ -326,34 +328,7 @@ namespace AEGI_Game
 
            private void buttonRestart_Click_1(object sender, EventArgs e)
         {
-            // Сброс состояния игры
-            countCoins = 0;
-            labelcoins.Text = T("Game_CoinsFmt", countCoins);
-
-            // Сброс позиции игрока
-            player.Left = 524;
-            player.Top = 485;
-
-            // Сброс позиции врагов
-            enemy1.Top = -130;
-            enemy2.Top = 400;
-            enemy3.Top = 12;
-            enemy4.Top = 400;
-
-            // Сброс позиции монет и бомб
-            coin.Top = -550;
-            coin.Left = rng.Next(430, 610);
-            coin1.Top = -600;
-            coin1.Left = rng.Next(185, 362);
-            bomb.Top = -500;
-            bomb.Left = rng.Next(430, 610);
-            bomb1.Top = -500;
-            bomb1.Left = rng.Next(185, 362);
-
-            // Сброс скорости
-            speed = baseSpeed;
-            playerSpeed = basePlayerSpeed;
-            coinSpeed = baseCoinSpeed;
+            ResetRoundState();
 
             SetGameState(GameState.Menu);
 
@@ -412,11 +387,37 @@ namespace AEGI_Game
             buttonRestart.Visible = false;
             buttonStartplay.Visible = false;
 
-            countCoins = 0;
-            labelcoins.Text = T("Game_CoinsFmt", countCoins);
+            ResetRoundState();
 
             SetGameState(GameState.Playing);
             _soundPlayer.PlayLooping();
+        }
+
+        private void ResetRoundState()
+        {
+            countCoins = 0;
+            labelcoins.Text = T("Game_CoinsFmt", countCoins);
+
+            speed = baseSpeed;
+            playerSpeed = basePlayerSpeed;
+            coinSpeed = baseCoinSpeed;
+
+            player.Left = playerStartLeft;
+            player.Top = playerStartTop;
+
+            RespawnEnemyNoOverlap(enemy1, enemy2, -600, -400, 430, 610);
+            RespawnEnemyNoOverlap(enemy2, enemy1, -900, -700, 430, 610);
+            RespawnEnemyNoOverlap(enemy3, enemy4, -600, -400, 185, 362);
+            RespawnEnemyNoOverlap(enemy4, enemy3, -900, -700, 185, 362);
+
+            coin.Top = -550;
+            coin.Left = rng.Next(430, 610);
+            coin1.Top = -600;
+            coin1.Left = rng.Next(185, 362);
+            bomb.Top = -500;
+            bomb.Left = rng.Next(430, 610);
+            bomb1.Top = -500;
+            bomb1.Left = rng.Next(185, 362);
         }
 
         private void RespawnTop(PictureBox obj, int top, int leftMin, int leftMax)
