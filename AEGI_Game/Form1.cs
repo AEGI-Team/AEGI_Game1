@@ -78,7 +78,7 @@ namespace AEGI_Game
         {
             _user = user;
             labelRecord.Visible = true;
-            labelRecord.Text = $"Рекорд: {_user.BestScore}";
+            labelRecord.Text = T("Game_RecordFmt", _user.BestScore);
             this.Text = $"OurGame — {_user.Username}";
         }
 
@@ -198,13 +198,13 @@ namespace AEGI_Game
                     }
 
                     labelRecord.Visible = true;
-                    labelRecord.Text = $"Рекорд: {_user.BestScore}";
+                    labelRecord.Text = T("Game_RecordFmt", _user.BestScore);
                 }
                 else
                 {
                     record = FindMax(recordArray);
                     labelRecord.Visible = true;
-                    labelRecord.Text = "Рекорд: " + record;
+                    labelRecord.Text = T("Game_RecordFmt", record);
                 }
 
                 _soundPlayer.Play();
@@ -215,14 +215,14 @@ namespace AEGI_Game
             {
                 countCoins++;
                 recordArray = AddElement(recordArray, countCoins);
-                labelcoins.Text = "У вас монет:" + countCoins;
+                labelcoins.Text = T("Game_CoinsFmt", countCoins);
                 RespawnTop(coin, -500, 430, 610);
             }
             if (player.Bounds.IntersectsWith(coin1.Bounds))
             {
                 countCoins++;
                 recordArray = AddElement(recordArray, countCoins);
-                labelcoins.Text = "У вас монет:" + countCoins;
+                labelcoins.Text = T("Game_CoinsFmt", countCoins);
                 RespawnTop(coin1, -500, 185, 362);
             }
 
@@ -328,7 +328,7 @@ namespace AEGI_Game
         {
             // Сброс состояния игры
             countCoins = 0;
-            labelcoins.Text = "У вас монет: 0";
+            labelcoins.Text = T("Game_CoinsFmt", countCoins);
 
             // Сброс позиции игрока
             player.Left = 524;
@@ -413,7 +413,7 @@ namespace AEGI_Game
             buttonStartplay.Visible = false;
 
             countCoins = 0;
-            labelcoins.Text = "У вас монет: 0";
+            labelcoins.Text = T("Game_CoinsFmt", countCoins);
 
             SetGameState(GameState.Playing);
             _soundPlayer.PlayLooping();
