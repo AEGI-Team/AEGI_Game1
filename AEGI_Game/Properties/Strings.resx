@@ -129,8 +129,17 @@
   <data name="Game_Lose" xml:space="preserve">
     <value>ВЫ ПРОИГРАЛИ!</value>
   </data>
+  <data name="Game_Pause" xml:space="preserve">
+    <value>Пауза</value>
+  </data>
+  <data name="Game_PauseButton" xml:space="preserve">
+    <value>Пауза</value>
+  </data>
   <data name="Game_RecordFmt" xml:space="preserve">
     <value>Рекорд: {0}</value>
+  </data>
+  <data name="Game_Resume" xml:space="preserve">
+    <value>Продолжить</value>
   </data>
   <data name="Game_Start" xml:space="preserve">
     <value>Начать игру</value>
